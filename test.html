@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatGPT Output</title>
+</head>
+<body>
+  <h1>ChatGPT Output</h1>
+  <label for="userInput">Input:</label>
+  <input type="text" id="userInput">
+  <button onclick="generateOutput()">Generate Output</button>
+  <p>Output:</p>
+  <div id="outputArea"></div>
+
+  <script>
+    function generateOutput() {
+      // 入力を取得
+      var userInput = document.getElementById("userInput").value;
+
+      // 出力を生成
+      var output = generateResponse(userInput);
+
+      // 出力エリアに表示
+      document.getElementById("outputArea").innerText = output;
+    }
+
+    function generateResponse(input) {
+      // ここでChatGPTによる応答を生成するロジックを書く
+      // 例えば、単純に入力を出力するだけの場合：
+      return "ChatGPT says: " + input;
+    }
+  </script>
+</body>
+</html>
