@@ -71,15 +71,17 @@ const server = http.createServer((request, response) => {
         // '/picData' パスへのアクセスに対する処理
         case '/picData':
             // 'pic' フォルダ内の画像ファイル一覧を取得
+            const picImages = getImagesList(picFolderPath);
             const picImagesData = picImages.map(image => ({
                 name: image,
-                data: fs.readFileSync(path.join(__dirname, 'pic', image), 'base64'),
+                path: path.join(__dirname, picFolderPath, image),
             }));
-        
+
             response.writeHead(200, { 'Content-Type': 'application/json' });
             response.write(JSON.stringify(picImagesData));
             response.end();
             break;
+
         default:
             response.writeHead(404, { 'Content-Type': 'text/plain' });
             response.write(urlInformation.pathname);
