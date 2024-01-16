@@ -1,7 +1,6 @@
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
-const path = require('path');
 
 // サーバーの起動ポート
 const serverPort = process.env.PORT || 3000;
@@ -53,45 +52,45 @@ const server = http.createServer((request, response) => {
             response.write(chatData);
             response.end();
             break;
-            
+
         case '/Dog1.jpg':
-	        response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : Dog1Data.length,});
-	        response.write(Dog1Data);
-	        response.end(); 
-	        break;
+            response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : Dog1Data.length});
+            response.write(Dog1Data);
+            response.end();
+            break;
         case '/Dog2.jpg':
-	        response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : Dog2Data.length,});
-	        response.write(Dog2Data);
-	        response.end(); 
-	        break;
+            response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : Dog2Data.length});
+            response.write(Dog2Data);
+            response.end();
+            break;
         case '/Dog3.jpg':
-	        response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : Dog3Data.length,});
-	        response.write(Dog3Data);
-	        response.end(); 
-	        break;
-            
+            response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : Dog3Data.length});
+            response.write(Dog3Data);
+            response.end();
+            break;
+
         case '/gu.png':
-	        response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenGuData.length,});
-	        response.write(JankenGuData);
-	        response.end(); 
-	        break;
+            response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenGuData.length});
+            response.write(JankenGuData);
+            response.end();
+            break;
         case '/choki.png':
-	        response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenChokiData.length,});
-	        response.write(JankenChokiData);
-	        response.end(); 
-	        break;
+            response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenChokiData.length});
+            response.write(JankenChokiData);
+            response.end();
+            break;
         case '/par.png':
-	        response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenParData.length,});
-	        response.write(JankenParData);
-	        response.end(); 
-	        break;
-            
+            response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenParData.length});
+            response.write(JankenParData);
+            response.end();
+            break;
+
         case '/janken_irasuto.jpg':
-	        response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : JankenData.length,});
-	        response.write(JankenData);
-	        response.end(); 
-	        break;
-            
+            response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : JankenData.length});
+            response.write(JankenData);
+            response.end();
+            break;
+
         default:
             response.writeHead(404, { 'Content-Type': 'text/plain' });
             response.write(urlInformation.pathname);
