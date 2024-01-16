@@ -19,9 +19,9 @@ const Dog1Data = fs.readFileSync('./Dog1.jpg');
 const Dog2Data = fs.readFileSync('./Dog2.jpg');
 const Dog3Data = fs.readFileSync('./Dog3.jpg');
 
-const JankenGuData = fs.readFileSync('./gu.png');
-const JankenChokiData = fs.readFileSync('./choki.png');
-const JankenParData = fs.readFileSync('./par.png');
+const JankenGuData = fs.readFileSync('./gu.jpg');
+const JankenChokiData = fs.readFileSync('./choki.jpg');
+const JankenParData = fs.readFileSync('./par.jpg');
 
 const JankenData = fs.readFileSync('./janken_irasuto.jpg');
 
@@ -69,18 +69,18 @@ const server = http.createServer((request, response) => {
             response.end();
             break;
 
-        case '/gu.png':
-            response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenGuData.length});
+        case '/gu.jpg':
+            response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : JankenGuData.length});
             response.write(JankenGuData);
             response.end();
             break;
-        case '/choki.png':
-            response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenChokiData.length});
+        case '/choki.jpg':
+            response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : JankenChokiData.length});
             response.write(JankenChokiData);
             response.end();
             break;
-        case '/par.png':
-            response.writeHead(200, {'Content-Type' : 'image/png', 'Content-Length' : JankenParData.length});
+        case '/par.jpg':
+            response.writeHead(200, {'Content-Type' : 'image/jpeg', 'Content-Length' : JankenParData.length});
             response.write(JankenParData);
             response.end();
             break;
