@@ -1,9 +1,3 @@
-//
-// Sample http server using node.js
-//   It works for "readMe.html, simple.html, simple.css, simple.js, umemura.jpg, and
-//   video : './20180310-rehearsal.mp4.
-//
-//
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
@@ -11,12 +5,6 @@ const path = require('path');
 
 // サーバーの起動ポート
 const serverPort = process.env.PORT || 3000;
-
-// フォルダ内の画像ファイル一覧を取得する関数
-function getImagesList(folderPath) {
-    return fs.readdirSync(folderPath)
-        .filter(file => file.endsWith('.png') || file.endsWith('.jpg'));
-}
 
 // メインページのデータを読み込む
 const mainData = fs.readFileSync('./main_v2.html', 'UTF-8');
@@ -50,7 +38,7 @@ const server = http.createServer((request, response) => {
                 response.end();
             });
             break;
-        case '/main.html':
+        case '/main_v2.html':
             response.writeHead(200, { 'Content-Type': 'text/html' });
             response.write(mainData);
             response.end();
