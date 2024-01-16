@@ -32,7 +32,7 @@
         }
 
         #outputChat {
-            bottom: 35%;
+            bottom: 15%;
             left: 50%;
             transform: translateX(-50%);
             margin-bottom: 50px; /* フレームを大きくする */
@@ -110,6 +110,9 @@
 
             // Show the output window
             document.getElementById('outputChat').style.display = 'block';
+
+            // Check if input text contains "ほめて" or "褒めて"
+            checkPraise(inputText);
         }
 
         function goBack() {
@@ -123,6 +126,15 @@
             
             // Clear the messages
             outputMessages.innerHTML = '';
+        }
+
+        // ほめてまたは褒めての文字が含まれているかを確認する関数
+        function checkPraise(text) {
+            const lowerText = text.toLowerCase();
+            if (lowerText.includes("ほめて") || lowerText.includes("褒めて")) {
+                // Redirect to praise.html
+                window.location.href = 'praise.html';
+            }
         }
     </script>
 </body>
