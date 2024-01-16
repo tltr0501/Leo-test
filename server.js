@@ -8,11 +8,11 @@ const http = require('http');
 const fs = require('fs'); 
 const url = require('url');
 
-const htmlData = fs.readFileSync('./simple.html', 'UTF-8');
-const cssData =  fs.readFileSync('./simple.css', 'UTF-8');
-const jsData =  fs.readFileSync('./simple.js', 'UTF-8');
-const jpegData = fs.readFileSync('./umemura.jpg');
-const videoPath = './20180310-rehearsal.mp4';
+const htmlData = fs.readFileSync('./main.html', 'UTF-8');
+//const cssData =  fs.readFileSync('./simple.css', 'UTF-8');
+//const jsData =  fs.readFileSync('./simple.js', 'UTF-8');
+const figData = fs.readFileSync('./pic');
+//const videoPath = './20180310-rehearsal.mp4';
 
 // Note that this service responds 'readme.html' (not 'index.html') for  '/'.
 function serviceClient(request, response) {
