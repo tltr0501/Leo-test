@@ -8,11 +8,10 @@ const http = require('http');
 const fs = require('fs'); 
 const url = require('url');
 
-const htmlData = fs.readFileSync('./main.html', 'UTF-8');
-//const cssData =  fs.readFileSync('./simple.css', 'UTF-8');
-//const jsData =  fs.readFileSync('./simple.js', 'UTF-8');
-//const figData = fs.readFileSync('./pic');
-//const videoPath = './20180310-rehearsal.mp4';
+const mainData = fs.readFileSync('./main.html', 'UTF-8');
+const jankenData =  fs.readFileSync('./janken.html', 'UTF-8');
+const chatData =  fs.readFileSync('./text.html', 'UTF-8');
+const figData = fs.readFileSync('./pic');
 
 // Note that this service responds 'ReadMe.html' (not 'index.html') for  '/'.
 function serviceClient(request, response) {
@@ -28,7 +27,17 @@ function serviceClient(request, response) {
 	break;
     case '/main.html':
 	response.writeHead(200, {'Content-Type' : 'text/html'});
-	response.write(htmlData);
+	response.write(mainData);
+	response.end(); 
+	break;
+    case '/janken.html':
+	response.writeHead(200, {'Content-Type' : 'text/html'});
+	response.write(jankenData);
+	response.end(); 
+	break;
+    case '/text.html':
+	response.writeHead(200, {'Content-Type' : 'text/html'});
+	response.write(chatData);
 	response.end(); 
 	break;
 
