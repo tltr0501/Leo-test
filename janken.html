@@ -17,50 +17,150 @@
         }
 
         #jankenImages img {
-            width: 100px;
+            width: 50px;
             height: auto;
             cursor: pointer;
         }
 
+        /* もう一度，元のページに戻るのボタンの配置 */
         #buttonContainer {
-            margin-top: 20px;
-            display: none; /* 最初は非表示 */
+            margin-top: 260px;
+            
         }
 
+        /* ”あなたの手は”，”わたし手は”のテキスト */
         #userHand, #computerHand {
             margin-top: 20px;
             font-size: 1.2em;
         }
 
+        /* ”あなたの手は”，”わたし手は”の画像の大きさ */
+        #userHand img, #computerHand img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* じゃんけんの結果テキスト */
         #resultMessage {
             font-size: 1.5em;
             margin-top: 20px;
         }
+
+        /* チャットモード，イラストモード，もう一度，元のページに戻るボタンの仕様変更*/
+        #chatMode, #illustrationMode, #goBack , #playAgain {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        /* チャットモードの色 */
+        #chatMode {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        /* イラストモードの色 */
+        #illustrationMode {
+            background-color: #008CBA; /* Blue */
+            color: white;
+        }
+
+        /* 元のページに戻るボタンの色 */
+        #goBack {
+            background-color: #0f0e0e; /* Black */
+            color: white;
+        }
+
+        /* もう一度のボタンの色 */
+        #playAgain {
+            background-color: #666666; /* Gary */
+            color: white;
+            display: none;
+        }
+
+        /* チャットモードとイラストモードの配置 */
+        #chatMode, #illustrationMode {
+            margin-right: 20px;
+        }
+
+        /* チャットモードの入力ウィンドウの配置 */
+        #inputWindow {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* 入力ウィンドウの上に表示するテキストの調整 */
+        #inputText {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        /* 送信ボタン */
+        #submitBtn {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* イラストモードの画像の配置 */
+        #illustrationContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* イラストモードの画像の大きさ */
+        #illustrationImages img {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        /* 初期画面のイラストの配置 */
+        #imageWrapper {
+            margin-top: 100px;
+        }
     </style>
 </head>
 <body>
-    <h1>Janken Page</h1>
-    <p>じゃんけんの結果:</p>
+    <h1>～絶対勝てるじゃんけんの世界へようこそ～</h1>
     <div id="result"></div>
     <p id="outcome"></p>
-
-    <div id="jankenImages">
-        <img src="pic/gu.png" alt="gu" onclick="selectHand('gu')">
-        <img src="pic/choki.png" alt="choki" onclick="selectHand('choki')">
-        <img src="pic/par.png" alt="par" onclick="selectHand('par')">
-    </div>
-
-    <p>～絶対勝てるじゃんけんの世界へようこそ～</p>
-    <p>3つの中から自分の手を選んでね♪</p>
+    <p id="selectModeMessage" style="display: block;">どちらかのモードを選んでね♪</p>
 
     <div id="userHand"></div>
     <div id="computerHand"></div>
 
     <div id="resultMessage"></div>
 
+    <button id="chatMode" onclick="activateChatMode()">チャットモード</button>
+    <button id="illustrationMode" onclick="activateIllustrationMode()">イラストモード</button>
+    
+    <div id="imageWrapper">
+        <img src="janken_irasuto.jpg" alt="イラスト" style="width: 100%; max-width: 400px;">
+    </div>
+
     <div id="buttonContainer">
-        <button onclick="playAgain()">もう一度</button>
-        <button onclick="goBack()">元のページに戻る</button>
+        <button onclick="playAgain()" id="playAgain" >もう一度</button>
+        <button onclick="goBack()" id="goBack">元のページに戻る</button>
+    </div>
+
+    <div id="inputWindow">
+        <p style="color: red;">グー，チョキ，パーを入力してください</p>
+        <input type="text" id="inputText" placeholder="ここに入力">
+        <button onclick="submitText()" id="submitBtn">送信</button>
+    </div>
+
+    <div id="illustrationContainer">
+        <div id="illustrationImages">
+            <img src="pic/gu.png" alt="gu" onclick="selectIllustration('gu')">
+            <img src="pic/choki.png" alt="choki" onclick="selectIllustration('choki')">
+            <img src="pic/par.png" alt="par" onclick="selectIllustration('par')">
+        </div>
+        <p>3つの中から自分の手を選んでね♪</p>
     </div>
 
     <script>
@@ -105,7 +205,114 @@
 
         function goBack() {
             // 元のページに戻るボタンがクリックされたら、main.htmlを読み込み
-            window.location.href = 'main.html';
+            window.location.href = 'main_v2.html';
+        }
+
+        function activateChatMode() {
+            // チャットモードボタンがクリックされたら
+            document.getElementById('chatMode').style.display = 'none';
+            document.getElementById('illustrationMode').style.display = 'none';
+            document.getElementById('inputWindow').style.display = 'block';
+
+            // もう一度ボタンと元のページに戻るボタンを非表示にする
+            document.getElementById('playAgain').style.display = 'none';
+            document.getElementById('goBack').style.display = 'none';
+
+            // imageWrapperを非表示にする
+            document.getElementById('imageWrapper').style.display = 'none';
+
+            // どちらかのモードを選んでねのメッセージを非表示にする
+            document.getElementById('selectModeMessage').style.display = 'none';
+        }
+
+        function submitText() {
+            // 送信ボタンがクリックされたら
+            const inputText = document.getElementById('inputText').value.toLowerCase();
+
+            if (inputText === "グー" || inputText === "ぐー") {
+                displayResult("gu", "choki");
+            } else if (inputText === "チョキ" || inputText === "ちょき") {
+                displayResult("choki", "par");
+            } else if (inputText === "パー" || inputText === "ぱー") {
+                displayResult("par", "gu");
+            } else {
+                alert("正しい手を入力してください。");
+            }
+
+            // 入力ウィンドウを非表示に
+            document.getElementById('inputWindow').style.display = 'none';
+
+            document.getElementById('playAgain').style.display = 'block';
+            document.getElementById('goBack').style.display = 'block';
+        }
+
+        function displayResult(userHand, computerHand) {
+            // チャットモードの結果を表示
+            document.getElementById('userHand').innerHTML = `あなたの手は: <img src="pic/${userHand}.png" alt="${userHand}">`;
+            document.getElementById('computerHand').innerHTML = `わたしの手は: <img src="pic/${computerHand}.png" alt="${computerHand}">`;
+            document.getElementById('resultMessage').innerText = "あなたの勝ち！すごいね，あなたが最強だよ！";
+
+            // ボタンを表示
+            document.getElementById('buttonContainer').style.display = 'block';
+        }
+
+        function activateIllustrationMode() {
+            // イラストモードボタンがクリックされたら
+            document.getElementById('chatMode').style.display = 'none';
+            document.getElementById('illustrationMode').style.display = 'none';
+            document.getElementById('illustrationContainer').style.display = 'block';
+
+            // もう一度ボタンと元のページに戻るボタンを非表示にする
+            document.getElementById('playAgain').style.display = 'none';
+            document.getElementById('goBack').style.display = 'none';
+
+            // imageWrapperを非表示にする
+            document.getElementById('imageWrapper').style.display = 'none';
+
+            // どちらかのモードを選んでねのメッセージを非表示にする
+            document.getElementById('selectModeMessage').style.display = 'none';
+        }
+
+        function selectIllustration(hand) {
+            // イラストモードでの選択結果表示
+            let userHand;
+            let computerHand;
+
+            switch (hand) {
+                case "gu":
+                    userHand = "gu.png";
+                    computerHand = "choki.png";
+                    break;
+                case "choki":
+                    userHand = "choki.png";
+                    computerHand = "par.png";
+                    break;
+                case "par":
+                    userHand = "par.png";
+                    computerHand = "gu.png";
+                    break;
+                default:
+                    userHand = "不明";
+                    computerHand = "不明";
+            }
+
+            // 画像とメッセージを表示
+            document.getElementById('userHand').innerHTML = `あなたの手は: <img src="pic/${userHand}" alt="${userHand}">`;
+            document.getElementById('computerHand').innerHTML = `わたしの手は: <img src="pic/${computerHand}" alt="${computerHand}">`;
+            document.getElementById('resultMessage').innerText = "あなたの勝ち！すごいね，あなたが最強だよ！";
+
+            // ボタンを表示
+            document.getElementById('buttonContainer').style.display = 'block';
+
+            // イラストモードの要素を非表示に
+            document.getElementById('illustrationContainer').style.display = 'none';
+
+            // imageWrapperを非表示にする
+            document.getElementById('imageWrapper').style.display = 'none';
+
+            // もう一度ボタンと元のページに戻るボタンを非表示にする
+            document.getElementById('playAgain').style.display = 'block';
+            document.getElementById('goBack').style.display = 'block';
         }
     </script>
 </body>
