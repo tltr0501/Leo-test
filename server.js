@@ -57,6 +57,7 @@ const server = http.createServer((request, response) => {
             response.write(chatData);
             response.end();
             break;
+        // '/pic' パスへのアクセスに対する処理
         case '/pic':
             response.writeHead(200, { 'Content-Type': 'application/json' });
             response.write(JSON.stringify(picImages));
@@ -67,13 +68,14 @@ const server = http.createServer((request, response) => {
             response.writeHead(302, { 'Location': '/pic' });
             response.end();
             break;
+        // '/picData' パスへのアクセスに対する処理
         case '/picData':
             // 'pic' フォルダ内の画像ファイル一覧を取得
             const picImagesData = picImages.map(image => ({
                 name: image,
-                path: path.join(__dirname, 'pic', image),
+                data: fs.readFileSync(path.join(__dirname, 'pic', image), 'base64'),
             }));
-
+        
             response.writeHead(200, { 'Content-Type': 'application/json' });
             response.write(JSON.stringify(picImagesData));
             response.end();
