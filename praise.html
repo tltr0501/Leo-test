@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praise Generator</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffd700; /* ゴールドの背景色 */
+    }
+
+    #praise-container {
+      text-align: center;
+      font-size: 36px;
+      padding: 40px;
+      border: 4px solid #333;
+      border-radius: 20px;
+      background-color: #fff; /* ホワイトの背景色 */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* ボックスシャドウ */
+      margin-bottom: 20px; /* 下部のマージンを追加 */
+    }
+
+    #update-button {
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #4caf50; /* グリーンのボタン色 */
+      color: #fff; /* 白いテキスト色 */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #update-button:hover {
+      background-color: #45a049; /* ボタンにホバーしたときの色 */
+    }
+
+    /* 新しく追加されたボタンのスタイル */
+    #button-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 60px; /* ボタンコンテナ全体の上部にマージンを追加 */
+    }
+
+    #chatroom-button, #main-button {
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #chatroom-button {
+      background-color: #3498db; /* ブルーのボタン色 */
+      color: #fff; /* 白いテキスト色 */
+    }
+
+    #main-button {
+      background-color: #e74c3c; /* レッドのボタン色 */
+      color: #fff; /* 白いテキスト色 */
+    }
+
+    #chatroom-button:hover, #main-button:hover {
+      background-color: #2c3e50; /* ボタンにホバーしたときの色 */
+    }
+  </style>
+</head>
+<body>
+
+  <div id="praise-container"></div>
+  <button id="update-button" onclick="updatePraise()">更新</button>
+
+  <!-- 新しく追加されたボタン -->
+  <div id="button-container">
+    <button id="chatroom-button" onclick="goToChatroom()">チャットルームへ</button>
+    <button id="main-button" onclick="goToMain()">最初のページへ戻る</button>
+  </div>
+
+  <script>
+    const praiseWords1 = ["すごい", "ほんとに", "とても", "すごく", "日本一", "世界で一番", "誰よりも"];
+    const praiseWords2 = ["かっこいい", "かわいい", "賢い", "天才だ", "魅力的だ", "輝いている"];
+
+    updatePraise();
+
+    function updatePraise() {
+      const randomPraiseWord1 = praiseWords1[Math.floor(Math.random() * praiseWords1.length)];
+      const randomPraiseWord2 = praiseWords2[Math.floor(Math.random() * praiseWords2.length)];
+
+      const praiseContainer = document.getElementById("praise-container");
+      praiseContainer.innerHTML = `<p>あなたは， ${randomPraiseWord1} ${randomPraiseWord2}</p>`;
+    }
+
+    // ボタンがクリックされた時の処理
+    function goToChatroom() {
+      // チャットルームへのリダイレクト
+      window.location.href = 'text.html';
+    }
+
+    function goToMain() {
+      // 最初のページへのリダイレクト
+      window.location.href = 'main_v2.html';
+    }
+  </script>
+
+</body>
+</html>
