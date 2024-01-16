@@ -70,15 +70,16 @@ const server = http.createServer((request, response) => {
             break;
         // '/picData' パスへのアクセスに対する処理
         case '/picData':
-            // 'pic' フォルダ内の画像ファイル一覧を取得
-            const picImages = getImagesList(picFolderPath);
-            const picImagesData = picImages.map(image => ({
-                name: image,
-                path: path.join(__dirname, picFolderPath, image),
+            // 同じ階層にある画像ファイル一覧を取得
+            const imageFiles = ['gu.png', 'choki.png', 'par.png', 'Dog_1.jpg', 'Dog_2.jpg', 'Dog_3.jpg'];
+
+            const imageFilesData = imageFiles.map(file => ({
+                name: file,
+                path: path.join(__dirname, file),
             }));
 
             response.writeHead(200, { 'Content-Type': 'application/json' });
-            response.write(JSON.stringify(picImagesData));
+            response.write(JSON.stringify(imageFilesData));
             response.end();
             break;
 
