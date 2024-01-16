@@ -27,9 +27,6 @@ const jankenData = fs.readFileSync('./janken.html', 'UTF-8');
 // チャットページのデータを読み込む
 const chatData = fs.readFileSync('./text.html', 'UTF-8');
 
-// 'pic' フォルダ内の画像ファイル一覧を取得
-const picImages = getImagesList('./pic');
-
 // サーバーの起動
 const server = http.createServer((request, response) => {
     const urlInformation = url.parse(request.url);
@@ -57,32 +54,7 @@ const server = http.createServer((request, response) => {
             response.write(chatData);
             response.end();
             break;
-        // '/pic' パスへのアクセスに対する処理
-        case '/pic':
-            response.writeHead(200, { 'Content-Type': 'application/json' });
-            response.write(JSON.stringify(picImages));
-            response.end();
-            break;
-        case '/pic/':
-            // URL の最後が '/' で終わっている場合は '/pic' にリダイレクト
-            response.writeHead(302, { 'Location': '/pic' });
-            response.end();
-            break;
-        // '/picData' パスへのアクセスに対する処理
-        case '/picData':
-            // 同じ階層にある画像ファイル一覧を取得
-            const imageFiles = ['gu.png', 'choki.png', 'par.png', 'Dog_1.jpg', 'Dog_2.jpg', 'Dog_3.jpg'];
-
-            const imageFilesData = imageFiles.map(file => ({
-                name: file,
-                path: path.join(__dirname, file),
-            }));
-
-            response.writeHead(200, { 'Content-Type': 'application/json' });
-            response.write(JSON.stringify(imageFilesData));
-            response.end();
-            break;
-
+            
         default:
             response.writeHead(404, { 'Content-Type': 'text/plain' });
             response.write(urlInformation.pathname);
