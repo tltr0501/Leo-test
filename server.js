@@ -19,7 +19,7 @@ function getImagesList(folderPath) {
 }
 
 // メインページのデータを読み込む
-const mainData = fs.readFileSync('./main_2.html', 'UTF-8');
+const mainData = fs.readFileSync('./main_v2.html', 'UTF-8');
 
 // じゃんけんページのデータを読み込む
 const jankenData = fs.readFileSync('./janken.html', 'UTF-8');
