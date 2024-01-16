@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+            transition: background-color 0.5s ease; /* 背景色の変更にアニメーションを追加 */
+        }
+
+        h1 {
+            color: #ffffff; /* 文字を白に変更 */
+            background-color: #6e2c00; /* 背景色に合わせて見やすい色に変更 */
+            padding: 10px;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row; /* ボタンを横並びに配置 */
+            gap: 20px; /* ボタン間の隙間を広く設定 */
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px; /* ボタンの下に隙間を設定 */
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影の追加 */
+        }
+
+        #jankenButton {
+            background-color: #ffa07a; /* じゃんけんボタンの色を変更 */
+            color: #ffffff;
+        }
+
+        #chatButton {
+            background-color: #add8e6; /* チャットボタンの色を変更 */
+            color: #000000;
+        }
+
+        .text-container {
+            display: flex;
+            flex-direction: row; /* テキストを横に配置 */
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #jankenText, #chatText {
+            margin-top: 10px;
+            font-size: 18px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        img {
+            max-width: 15%; /* 画像のサイズを50%に変更 */
+            height: auto;
+            margin-top: 20px;
+        }
+
+        #updateButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin-top: 20px;
+            background-color: #2ecc71; /* 更新ボタンの初期色を設定 */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影の追加 */
+        }
+    </style>
+</head>
+<body onload="changeImage()">
+    <h1>このページではきっと幸せになれることでしょう!</h1>
+
+    <div class="button-container">
+        <button id="jankenButton" onclick="navigateTo('janken.html')">じゃんけん</button>
+        <button id="chatButton" onclick="navigateTo('text.html')">チャット</button>
+    </div>
+
+    <div class="text-container">
+        <div id="jankenText">絶対に勝てるじゃんけんだよ！</div>
+        <div id="chatText">暇人向けのチャット部屋だよ！</div>
+    </div>
+
+    <div id="imageContainer"></div>
+
+    <button id="updateButton" onclick="changeImage()">更新</button>
+
+    <script>
+        function changeImage() {
+            const imageContainer = document.getElementById('imageContainer');
+            imageContainer.innerHTML = ''; // 既存の画像をクリア
+
+            for (let i = 0; i < 3; i++) {
+                const randomImageNumber = Math.floor(Math.random() * 23) + 1;
+                const imagePath = `pic/Dog_${randomImageNumber}.jpg`;
+
+                const newImage = document.createElement('img');
+                newImage.src = imagePath;
+                newImage.alt = `Random Dog Image ${i + 1}`; // 画像ごとに異なる alt 属性を設定
+
+                if (i > 0) {
+                    // 最初の画像以外にスペースを追加
+                    newImage.style.marginLeft = '20px'; // 20pxのスペースを設定（適宜調整）
+                }
+
+                imageContainer.appendChild(newImage);
+            }
+
+            // 背景色をランダムに変更
+            document.body.style.backgroundColor = getRandomColor();
+        }
+
+        function navigateTo(destination) {
+            window.location.href = destination;
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #inputChat, #outputChat {
+            display: block;
+            position: fixed;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #inputChat {
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #outputChat {
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 20px; /* Added margin to separate output window from button */
+        }
+
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-top: 10px; /* Added margin to separate button from textarea */
+        }
+    </style>
+</head>
+<body>
+    <h1>チャットルームへようこそ</h1>
+
+    <div id="inputChat">
+        <h2>Input Chat</h2>
+        <textarea id="inputTextArea" rows="4" cols="30"></textarea>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div id="outputChat">
+        <h2>Output Chat</h2>
+        <div id="outputMessages"></div>
+    </div>
+
+    <button onclick="goBack()">元のページに戻る</button>
+
+    <script>
+        function sendMessage() {
+            const inputText = document.getElementById('inputTextArea').value;
+            const outputMessages = document.getElementById('outputMessages');
+
+            // Display the input text in the output window
+            outputMessages.innerHTML += `<p>${inputText}</p>`;
+
+            // Clear the input textarea
+            document.getElementById('inputTextArea').value = '';
+
+            // Show the output window
+            document.getElementById('outputChat').style.display = 'block';
+        }
+
+        function goBack() {
+            // Redirect to main.html
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janken Page</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #jankenImages {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #jankenImages img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        #buttonContainer {
+            margin-top: 20px;
+            display: none; /* 最初は非表示 */
+        }
+
+        #userHand, #computerHand {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        #resultMessage {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Janken Page</h1>
+    <p>じゃんけんの結果:</p>
+    <div id="result"></div>
+    <p id="outcome"></p>
+
+    <div id="jankenImages">
+        <img src="pic/gu.png" alt="gu" onclick="selectHand('gu')">
+        <img src="pic/choki.png" alt="choki" onclick="selectHand('choki')">
+        <img src="pic/par.png" alt="par" onclick="selectHand('par')">
+    </div>
+
+    <p>～絶対勝てるじゃんけんの世界へようこそ～</p>
+    <p>3つの中から自分の手を選んでね♪</p>
+
+    <div id="userHand"></div>
+    <div id="computerHand"></div>
+
+    <div id="resultMessage"></div>
+
+    <div id="buttonContainer">
+        <button onclick="playAgain()">もう一度</button>
+        <button onclick="goBack()">元のページに戻る</button>
+    </div>
+
+    <script>
+        function selectHand(hand) {
+            // ボタンを非表示に
+            document.getElementById('buttonContainer').style.display = 'none';
+
+            let userHand;
+            let computerHand;
+
+            switch (hand) {
+                case "gu":
+                    userHand = "gu.png";
+                    computerHand = "choki.png";
+                    break;
+                case "choki":
+                    userHand = "choki.png";
+                    computerHand = "par.png";
+                    break;
+                case "par":
+                    userHand = "par.png";
+                    computerHand = "gu.png";
+                    break;
+                default:
+                    userHand = "不明";
+                    computerHand = "不明";
+            }
+
+            // 画像とメッセージを表示
+            document.getElementById('userHand').innerHTML = `あなたの手は: <img src="pic/${userHand}" alt="${userHand}">`;
+            document.getElementById('computerHand').innerHTML = `わたしの手は: <img src="pic/${computerHand}" alt="${computerHand}">`;
+            document.getElementById('resultMessage').innerText = "あなたの勝ち！おめでとう！すごいね！";
+
+            // ボタンを表示
+            document.getElementById('buttonContainer').style.display = 'block';
+        }
+
+        function playAgain() {
+            // もう一度ボタンがクリックされたら、janken.htmlを再読み込み
+            location.reload();
+        }
+
+        function goBack() {
+            // 元のページに戻るボタンがクリックされたら、main.htmlを読み込み
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>
