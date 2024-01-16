@@ -87,6 +87,14 @@
             margin-right: 20px;
         }
 
+        /* 入力ウィンドウの上に表示するテキストの調整 */
+        #inputWindow p {
+            color: rgb(202, 20, 20);
+            font-size: 24px; /* 大きさを調整 */
+            font-weight: bold; /* 太字に設定 */
+            margin-bottom: 10px; /* 必要に応じてマージンを追加 */
+        }
+
         /* チャットモードの入力ウィンドウの配置 */
         #inputWindow {
             display: none;
@@ -149,16 +157,16 @@
     </div>
 
     <div id="inputWindow">
-        <p style="color: red;">グー，チョキ，パーを入力してください</p>
+        <p style="color: red;">グー，チョキ，パー，好きな手を入力してください</p>
         <input type="text" id="inputText" placeholder="ここに入力">
         <button onclick="submitText()" id="submitBtn">送信</button>
     </div>
 
     <div id="illustrationContainer">
         <div id="illustrationImages">
-            <img src="pic/gu.png" alt="gu" onclick="selectIllustration('gu')">
-            <img src="pic/choki.png" alt="choki" onclick="selectIllustration('choki')">
-            <img src="pic/par.png" alt="par" onclick="selectIllustration('par')">
+            <img src="gu.jpg" alt="gu" onclick="selectIllustration('gu')">
+            <img src="choki.jpg" alt="choki" onclick="selectIllustration('choki')">
+            <img src="par.jpg" alt="par" onclick="selectIllustration('par')">
         </div>
         <p>3つの中から自分の手を選んでね♪</p>
     </div>
@@ -248,8 +256,8 @@
 
         function displayResult(userHand, computerHand) {
             // チャットモードの結果を表示
-            document.getElementById('userHand').innerHTML = `あなたの手は: <img src="pic/${userHand}.png" alt="${userHand}">`;
-            document.getElementById('computerHand').innerHTML = `わたしの手は: <img src="pic/${computerHand}.png" alt="${computerHand}">`;
+            document.getElementById('userHand').innerHTML = `あなたの手は: <img src="${userHand}.jpg" alt="${userHand}">`;
+            document.getElementById('computerHand').innerHTML = `わたしの手は: <img src="${computerHand}.jpg" alt="${computerHand}">`;
             document.getElementById('resultMessage').innerText = "あなたの勝ち！すごいね，あなたが最強だよ！";
 
             // ボタンを表示
@@ -297,8 +305,8 @@
             }
 
             // 画像とメッセージを表示
-            document.getElementById('userHand').innerHTML = `あなたの手は: <img src="pic/${userHand}" alt="${userHand}">`;
-            document.getElementById('computerHand').innerHTML = `わたしの手は: <img src="pic/${computerHand}" alt="${computerHand}">`;
+            document.getElementById('userHand').innerHTML = `あなたの手は: <img src="${userHand}" alt="${userHand}">`;
+            document.getElementById('computerHand').innerHTML = `わたしの手は: <img src="${computerHand}" alt="${computerHand}">`;
             document.getElementById('resultMessage').innerText = "あなたの勝ち！すごいね，あなたが最強だよ！";
 
             // ボタンを表示
