@@ -14,6 +14,9 @@ const jankenData = fs.readFileSync('./janken.html', 'UTF-8');
 // チャットページのデータを読み込む
 const chatData = fs.readFileSync('./text.html', 'UTF-8');
 
+// ほめワードページのデータを読み込む
+const praiseData = fs.readFileSync('./praise.html', 'UTF-8');
+
 // 画像データの読み込み
 const Dog1Data = fs.readFileSync('./Dog1.jpg');
 const Dog2Data = fs.readFileSync('./Dog2.jpg');
@@ -50,6 +53,11 @@ const server = http.createServer((request, response) => {
         case '/text.html':
             response.writeHead(200, { 'Content-Type': 'text/html' });
             response.write(chatData);
+            response.end();
+            break;
+        case '/praise.html':
+            response.writeHead(200, { 'Content-Type': 'text/html' });
+            response.write(praiseData);
             response.end();
             break;
 
