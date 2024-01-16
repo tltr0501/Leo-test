@@ -27,6 +27,17 @@ const jankenData = fs.readFileSync('./janken.html', 'UTF-8');
 // チャットページのデータを読み込む
 const chatData = fs.readFileSync('./text.html', 'UTF-8');
 
+// 画像データの読み込み
+const Dog1Data = fs.readFileSync('./Dog1.jpg');
+const Dog2Data = fs.readFileSync('./Dog2.jpg');
+const Dog3Data = fs.readFileSync('./Dog3.jpg');
+
+const JankenGuData = fs.readFileSync('./gu.png');
+const JankenChokiData = fs.readFileSync('./choki.png');
+const JankenParData = fs.readFileSync('./par.png');
+
+const JankenData = fs.readFileSync('./janken_irasuto.jpg');
+
 // サーバーの起動
 const server = http.createServer((request, response) => {
     const urlInformation = url.parse(request.url);
